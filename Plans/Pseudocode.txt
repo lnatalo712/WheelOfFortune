@@ -1,0 +1,148 @@
+playerBank = list of each players money per round
+totalBank = list of each players total money
+playerTurn = 1
+
+wheel = list of all wheel options
+words = list of words to be used
+vowels = list of vowels
+alreadyGuessed = list of letter already guessed by players
+answer = list for building the answer as correct letters are guessed
+round = 1
+
+def wordSelection function
+    randomly select a word from words list
+
+def spinWheel function
+    generate random number to determine what the wheel landed on
+
+def guessWord function
+    decision = input "Would you like to guess the word?"
+    
+    while loop to get a yes or no response
+        if decision = yes
+            take in their guess and see if it's correct
+        elif decision = no
+            return
+        else
+            decision = input please respond with either yes or no
+
+def takeTurn function
+    print whose turn it is
+
+    call guessWord
+    call spinWheel
+
+    if spin lands on bankrupt
+        make player's round money 0
+        end turn
+    elif spin lands on loase a turn
+        end turn
+
+    call consonantCheck
+    if consonant guess is correct
+        add money to current player's bank
+
+        while condition true
+            if player's bank > 250
+                call vowelCheck
+
+            if vowel guess is wrong
+                end turn
+
+            call guessWord
+
+            call spinWheel
+            if spin lands on bankrupt
+                make player's round money 0
+                end turn
+            elif spin lands on loase a turn
+                end turn
+
+            call consonantCheck
+            if consonant guess is correct
+                add money to current player's bank
+            else
+                end turn
+    else
+        end turn
+
+def consonantCheck function
+    guess = input please guess a consonant
+
+    while loop to make sure a consonant is guessed
+        if none letter guessed
+            guess = input please guess a consonant
+        elif vowel guessed
+            guess = input please guess a consonant
+        else
+            exit while loop
+
+    if guess has already been guessed
+        end turn
+    elif guess is in the word
+        append guess to alreadyGuessed
+        for loop to reveal each letter in its position
+
+        if the guessed letter fully solves the word
+            end the round
+    else
+        end turn
+
+def vowelCheck function
+    choice = input would you like to buy a vowel
+    
+    while loop to get an appropriate answer
+        if choice = yes
+            current playerBank - 250
+            guess = input please guess a vowel
+        elif choice = no
+            exit function
+        else
+            guess = input please respond with either yes or no
+
+    if guess has already been guessed
+        end turn
+    elif guess is not a vowel
+        end turn
+    elif guess is correct
+        append guess to alreadyGuessed
+        for loop to reveal each letter in its position
+
+        if the guessed letter fully solves the word
+            end the round
+    else
+        end turn
+
+
+
+while round < 3
+    call wordSelection
+    answer = underscores of selected word length
+
+    while word has not been guessed
+        call takeTurn
+
+        if takeTurn returns end turn
+            if playerTurn = 3
+                playerTurn = 1
+            else
+                playerTurn + 1
+        elif takeTurn returns the word was guessed correctly
+            round + 1
+            add each player's playerBank to totalBank
+            reset each player's playerBank to 0
+            reset alreadyGuessed
+        elif takeTurn returns bankrupt
+            reset player's playerBank to 0
+            if playerTurn = 3
+                playerTurn = 1
+            else
+                playerTurn + 1
+
+topPlayer = determine which player has the most money
+playerTurn = topPlayer
+
+call wordSelection
+answer = underscores of selected word length
+start solution with r, s, t, l, n, e already solved
+call guessWord
